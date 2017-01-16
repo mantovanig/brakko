@@ -1,14 +1,7 @@
 {
   "name": "bracco",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple runner based on backstopJs for Visual Regression Test",
-  "main": "index.js",
-  "repository": "https://github.com/mantovanig/bracco.git",
-    "bugs": {
-    "url": "https://github.com/mantovanig/bracco/issues"
-  },
-  "author": "mantovanig",
-  "license": "MIT",
   "keywords": [
     "backstopjs",
     "regression",
@@ -16,6 +9,13 @@
     "scenarios",
     "css-testing"
   ],
+  "main": "index.js",
+  "repository": "https://github.com/mantovanig/bracco.git",
+  "bugs": {
+    "url": "https://github.com/mantovanig/bracco/issues"
+  },
+  "author": "mantovanig",
+  "license": "MIT",
   "dependencies": {
     "backstopjs": "^2.3.5",
     "globby": "^6.1.0",
