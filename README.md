@@ -1,6 +1,6 @@
-# BRACCO
+# BRAKKO
 
-Bracco is a simple runner of [BackstopJS](https://github.com/garris/BackstopJS) for visual regression testing.
+Brakko is a simple runner of [BackstopJS](https://github.com/garris/BackstopJS) for visual regression testing.
 
 You can easly **split, manage and run your scenarios**
 
@@ -81,18 +81,18 @@ scenarios
 
 `index.js`
 ```javascript
-const bracco = require('bracco');
+const brakko = require('brakko');
 
-bracco.init({
+brakko.init({
     testhost: "https://www.amazon.it/",
     refhost: "https://www.amazon.co.uk/"
 });
 
-bracco.reference({
+brakko.reference({
     scenario: 'footer'
 });
 
-bracco.test({
+brakko.test({
     scenario: 'footer'
 });
 ```
