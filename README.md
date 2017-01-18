@@ -13,7 +13,7 @@ You can easly **split, manage and run your scenarios**
 
 - Create folder `casper_scripts` with default file onReady.js and onBefore.js - [See doc of BackstopJS](https://github.com/garris/BackstopJS#running-custom-casperjs-scripts)
 
-- Create folder `scenarios` with subfolder and js file for each scenarios - [See file structure](#file-structure)
+- Create folder `scenarios` with subfolder and js file for each scenarios - [See file structure](#files-structure)
 
 ## Methods
 
