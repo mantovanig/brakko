@@ -1,6 +1,6 @@
 # BRAKKO
 
-![Image of Brakko](https://mantovanig.it/media/brakko_readme.jpg)
+![Image of Brakko](http://mantovanig.it/media/brakko_readme.jpg)
 
 Brakko is a simple runner of [BackstopJS](https://github.com/garris/BackstopJS) for visual regression testing.
 
