@@ -40,7 +40,7 @@ Reference task of backstopJS.
 `options[Object]`
 ```javascript
     {
-        scenario: string,
+        scenario: NameOfSubfolder[string],
         tags: [array]
     }
 ```
@@ -54,7 +54,7 @@ Test task of backstopJS.
 `options[Object]`
 ```javascript
     {
-        scenario: string,
+        scenario: NameOfSubfolder[string],
         tags: [array]
     }
 ```
@@ -101,14 +101,9 @@ brakko.init({
 
 brakko.reference({
     scenario: 'footer'
-});
+}, true);
 
-brakko.test({
-    scenario: 'footer'
-});
 ```
-
-
 
 `scenarios/footer/footerAll.js`
 ```javascript
@@ -120,28 +115,35 @@ module.exports =
             "referenceUrl": conf.refhost,
             "url": conf.testhost,
             "removeSelectors": [
-                '#main'
+                '#unrec-pageContent'
             ],
             "selectors": [
-                "#siteFooter"
+                ".navFooterCopyright"
             ],
+            "misMatchThreshold" : 5,
             "onBeforeScript": "footer/onBefore.js",
             "onReadyScript": "footer/onReady.js"
         }]
     };
 ```
 
-
-
 `casper_scripts/footer/onReady.js`
 ```javascript
 module.exports = function (casper, scenario, vp) {
-  
-    casper.waitForSelector('footer', function() {
+
+    casper.waitForSelector('.navFooterCopyright', function() {
       this.scrollToBottom();
     });
 
   console.log('onReady.js has run for: ', vp.name);
+};
+```
+
+`casper_scripts/footer/onBefore.js`
+```javascript
+module.exports = function (casper, scenario, vp) {
+  //This script runs before your app loads. Edit here to log-in, load cookies or set other states required for your test.
+  console.log('onBefore.js has run for '+ vp.name + '.');
 };
 ```
 
