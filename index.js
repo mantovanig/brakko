@@ -22,30 +22,36 @@ const bracco = {
 
     buildConfig(options) {
         let scenarios = [];
-        let tags = [];
         let conf = this.conf;
 
-        // read tags option
-        if(Array.isArray(options.tags)) {
+        let tags = (options.tags) ? options.tags : false;
+        tags = (tags && !Array.isArray(tags)) ? [tags] : tags;
 
-            if(options.tags.length > 0) {
-                tags = tags.concat(options.tags);
-            }
-            
-        } else if(options.tags !== '' && options.tags) {
-            tags.push(options.tags);
-        }
+        let labels = (options.labels) ? options.labels : false;
+        labels = (labels && !Array.isArray(labels)) ? [labels] : labels;
+
+        let scenarioNames = (options.scenario) ? options.scenario : false;
+        scenarioNames = (scenarioNames && !Array.isArray(scenarioNames)) ? [scenarioNames] : scenarioNames;
 
         // build path for globby
         let root = path.normalize(process.cwd());
-        let pathScenario = (options.hasOwnProperty('scenario')) ? root + '/scenarios/' + options.scenario + '/*.js' : root + '/scenarios/**/*.js';
+        let scenariosPaths = [];
+
+        if (scenarioNames.length > 0) {
+            scenariosPaths = scenarioNames.map(e => {
+                return root + '/scenarios/' + e + '/*.js'
+            })
+        } else {
+            scenariosPaths.push(root + '/scenarios/**/*.js');
+        }
 
         // get scenarios from js files
-        globby.sync([pathScenario]).map(e => {
+        globby.sync(scenariosPaths).map(e => {
             let getScenario = require(e);
             let newScenarios = [];
 
-            if(tags.length > 0) {
+
+            if (tags && tags.length > 0) {
 
                 getScenario(conf)
                     .filter(scenario => scenario.hasOwnProperty('tags'))
@@ -53,17 +59,23 @@ const bracco = {
 
                         scenario.tags.map(cTag => {
                             let match = _.findIndex(tags, o => o === cTag );
-                            if(match !== -1) { 
+                            if (match !== -1) { 
                                 newScenarios.push(Object.assign({}, defaultScenario, scenario));
                             }
                         });
 
-                });
+                    });
 
             } else {
-
                 newScenarios = getScenario(conf).map(scenario => Object.assign({}, defaultScenario, scenario));
+            }
 
+            if(labels && labels.length > 0) {
+                newScenarios = newScenarios
+                                    .filter(scenario => scenario.hasOwnProperty('label'))
+                                    .filter(scenario => {
+                                        return labels.indexOf(scenario.label) === 0
+                                    });
             }
 
             scenarios = scenarios.concat(newScenarios);  

@@ -40,8 +40,9 @@ Reference task of backstopJS.
 `options[Object]`
 ```javascript
     {
-        scenario: NameOfSubfolder[string],
-        tags: [array]
+        scenario: NameOfSubfolder[string/array],
+        tags: [string/array],
+        labels: [string/array]
     }
 ```
 
@@ -54,8 +55,9 @@ Test task of backstopJS.
 `options[Object]`
 ```javascript
     {
-        scenario: NameOfSubfolder[string],
-        tags: [array]
+        scenario: NameOfSubfolder[string/array],
+        tags: [string/array],
+        labels: [string/array]
     }
 ```
 
@@ -148,4 +150,7 @@ module.exports = function (casper, scenario, vp) {
 ```
 
 ## TODO
-- CLI command for first setup
+- [x] add label to task cofig
+- [x] add the support for multiple scenarios
+- [ ] add country to init config
+- [ ] yeoman generator
