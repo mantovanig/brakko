@@ -96,13 +96,16 @@ const bracco = {
 
         this.buildConfig(options);
 
-        backstop('reference')
+        return backstop('reference')
             .then(() => {
                 if(test) {
                     backstop('test');
                 }
             }).catch((err) => {
-                console.log("Error: ", err);
+                if(err) {
+                    console.log("Error: ", err);
+                }
+                return Promise.reject(err);
             });
 
     },
@@ -111,7 +114,7 @@ const bracco = {
 
         this.buildConfig(options);
 
-        backstop('test');
+        return backstop('test');
     }
 
 };
