@@ -1,6 +1,6 @@
 {
   "name": "brakko",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Simple runner based on backstopJs for Visual Regression Test",
   "keywords": [
     "backstopjs",
@@ -17,7 +17,7 @@
   "author": "mantovanig",
   "license": "MIT",
   "dependencies": {
-    "backstopjs": "^2.3.5",
+    "backstopjs": "^2.6.14",
     "globby": "^6.1.0",
     "jsonfile": "^2.4.0",
     "lodash": "^4.17.3"
